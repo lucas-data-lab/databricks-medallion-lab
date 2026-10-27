@@ -1,0 +1,19 @@
+bundle:
+  name: databricks-medallion-lab
+
+include:
+  - resources/*.yml
+
+variables:
+  catalog:
+    description: Catálogo do Unity Catalog usado pelo ambiente
+    default: dev
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://dbc-e1c7780b-5a63.cloud.databricks.com
+    variables:
+      catalog: dev
