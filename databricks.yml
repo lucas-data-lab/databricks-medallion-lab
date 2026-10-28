@@ -17,3 +17,20 @@ targets:
       host: https://dbc-e1c7780b-5a63.cloud.databricks.com
     variables:
       catalog: dev
+
+  hml:
+    mode: production
+    workspace:
+      host: https://dbc-e1c7780b-5a63.cloud.databricks.com
+      root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}
+    variables:
+      catalog: hml
+    run_as:
+      service_principal_name: 0677db6b-f01a-4928-9715-b8e86a10de4a
+    permissions:
+      - service_principal_name: 0677db6b-f01a-4928-9715-b8e86a10de4a
+        level: CAN_MANAGE
+      - group_name: users
+        level: CAN_VIEW
+      - user_name: lucasalmeida170501@gmail.com
+        level: CAN_RUN
