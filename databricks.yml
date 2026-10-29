@@ -1,0 +1,61 @@
+bundle:
+  name: databricks-medallion-lab
+
+include:
+  - resources/*.yml
+
+variables:
+  catalog:
+    description: Catálogo do Unity Catalog usado pelo ambiente
+    default: dev
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://dbc-e1c7780b-5a63.cloud.databricks.com
+    variables:
+      catalog: dev
+
+  hml:
+    mode: production
+    presets:
+      name_prefix: "[hml] "
+      tags:
+        ambiente: hml
+    workspace:
+      host: https://dbc-e1c7780b-5a63.cloud.databricks.com
+      root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}
+    variables:
+      catalog: hml
+    run_as:
+      service_principal_name: 0677db6b-f01a-4928-9715-b8e86a10de4a
+    permissions:
+      - service_principal_name: 0677db6b-f01a-4928-9715-b8e86a10de4a
+        level: CAN_MANAGE
+      - group_name: users
+        level: CAN_VIEW
+      - user_name: lucasalmeida170501@gmail.com
+        level: CAN_RUN
+
+  prd:
+    mode: production
+    presets:
+      name_prefix: "[prd] "
+      tags:
+        ambiente: prd
+    workspace:
+      host: https://dbc-e1c7780b-5a63.cloud.databricks.com
+      root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}
+    variables:
+      catalog: prd
+    run_as:
+      service_principal_name: 7629f2c0-f79a-4c4e-adb3-a2d8a81c7ee6
+    permissions:
+      - service_principal_name: 7629f2c0-f79a-4c4e-adb3-a2d8a81c7ee6
+        level: CAN_MANAGE
+      - group_name: users
+        level: CAN_VIEW
+      - user_name: lucasalmeida170501@gmail.com
+        level: CAN_RUN

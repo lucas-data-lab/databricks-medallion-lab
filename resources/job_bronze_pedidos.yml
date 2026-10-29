@@ -1,0 +1,10 @@
+resources:
+  jobs:
+    job_bronze_pedidos:
+      name: job_bronze_pedidos
+      tasks:
+        - task_key: bronze_pedidos
+          notebook_task:
+            notebook_path: ../src/bronze/nb_bronze_pedidos.py
+            base_parameters:
+              catalog: ${var.catalog}
