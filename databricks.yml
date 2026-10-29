@@ -20,6 +20,10 @@ targets:
 
   hml:
     mode: production
+    presets:
+      name_prefix: "[hml] "
+      tags:
+        ambiente: hml
     workspace:
       host: https://dbc-e1c7780b-5a63.cloud.databricks.com
       root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}
@@ -37,6 +41,10 @@ targets:
 
   prd:
     mode: production
+    presets:
+      name_prefix: "[prd] "
+      tags:
+        ambiente: prd
     workspace:
       host: https://dbc-e1c7780b-5a63.cloud.databricks.com
       root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}
