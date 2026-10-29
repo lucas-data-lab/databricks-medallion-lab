@@ -34,3 +34,20 @@ targets:
         level: CAN_VIEW
       - user_name: lucasalmeida170501@gmail.com
         level: CAN_RUN
+
+  prd:
+    mode: production
+    workspace:
+      host: https://dbc-e1c7780b-5a63.cloud.databricks.com
+      root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}
+    variables:
+      catalog: prd
+    run_as:
+      service_principal_name: 7629f2c0-f79a-4c4e-adb3-a2d8a81c7ee6
+    permissions:
+      - service_principal_name: 7629f2c0-f79a-4c4e-adb3-a2d8a81c7ee6
+        level: CAN_MANAGE
+      - group_name: users
+        level: CAN_VIEW
+      - user_name: lucasalmeida170501@gmail.com
+        level: CAN_RUN
