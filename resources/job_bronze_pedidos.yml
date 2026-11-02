@@ -1,10 +1,23 @@
 resources:
   jobs:
     job_bronze_pedidos:
-      name: job_bronze_pedidos
+      name: job_pedidos_medalhao
+      parameters:
+        - name: catalog
+          default: ${var.catalog}
       tasks:
         - task_key: bronze_pedidos
           notebook_task:
             notebook_path: ../src/bronze/nb_bronze_pedidos.py
-            base_parameters:
-              catalog: ${var.catalog}
+
+        - task_key: silver_pedidos
+          depends_on:
+            - task_key: bronze_pedidos
+          notebook_task:
+            notebook_path: ../src/silver/nb_silver_pedidos.py
+
+        - task_key: gold_pedidos_diario
+          depends_on:
+            - task_key: silver_pedidos
+          notebook_task:
+            notebook_path: ../src/gold/nb_gold_pedidos_diario.py
