@@ -2,6 +2,9 @@ resources:
   jobs:
     job_bronze_pedidos:
       name: job_pedidos_medalhao
+      schedule:
+        quartz_cron_expression: "0 0 6,17 * * ?"
+        timezone_id: America/Sao_Paulo
       parameters:
         - name: catalog
           default: ${var.catalog}

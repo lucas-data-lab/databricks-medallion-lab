@@ -22,6 +22,7 @@ targets:
     mode: production
     presets:
       name_prefix: "[hml] "
+      trigger_pause_status: PAUSED 
       tags:
         ambiente: hml
     workspace:
